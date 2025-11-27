@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TS.SOLAR - Kits de Natal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Encode+Sans:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lexend:wght@100..900&family=Libre+Caslon+Display&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Voltaire&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- FASE 1: Seção de agradecimento -->
+    <div class="thank-you-section" id="thankYouSection">
+        <div class="company-logo">
+            <!-- Referência para a logo local -->
+            <img src="logo2.png" alt="TS.SOLAR Logo" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <h1>Kits Especiais de Natal!!</h1>
+        <p>A TS.Solar os deseja um Feliz Natal!</p>
+    </div>
+
+    <!-- FASE 2: Container de chuva horizontal -->
+    <div class="rain-container" id="rainContainer"></div>
+    
+    <!-- Nevoal branco -->
+    <div class="fog-overlay" id="fogOverlay"></div>
+
+    <!-- FASE 3: Container de kits -->
+    <div class="main-container" id="mainContainer">
+        <div class="kits-content">
+            <h2 class="kits-title">Conheça Nossos Kits de Natal</h2>
+            <div class="kits-grid" id="kitsGrid">
+                <!-- Os cards serão inseridos aqui pelo JavaScript -->
+            </div>
+        </div>
+        <!-- NOVO: RODAPÉ -->
+        <footer class="footer">
+            Desenvolvido por <span class="developer">Felipe Indejejczak</span>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
