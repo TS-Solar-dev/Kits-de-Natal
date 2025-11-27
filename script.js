@@ -126,6 +126,12 @@ function renderKits() {
         return;
     }
     
+    // PEGAR O VENDEDOR CORRETO AQUI DENTRO DA FUNÇÃO
+    const refVendedor = getUrlParameter('ref') || 'rose';
+    const vendedorSelecionado = vendedores[refVendedor] || vendedores['rose'];
+    
+    console.log('Vendedor selecionado:', vendedorSelecionado);
+    
     kits.forEach((kit, index) => {
         const card = document.createElement('div');
         card.className = 'kit-card';
@@ -141,7 +147,7 @@ function renderKits() {
         );
         
         // Link do WhatsApp com o parâmetro 'ref' para rastreamento do vendedor
-        const whatsappLink = `https://wa.me/${vendedorSelecionado.whatsapp}?text=${whatsappMessage}&ref=${vendedorSelecionado.ref}`;
+        const whatsappLink = `https://wa.me/${vendedorSelecionado.whatsapp}?text=${whatsappMessage}`;
         
         card.innerHTML = `
             <div class="kit-image">
