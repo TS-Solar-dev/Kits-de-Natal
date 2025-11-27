@@ -1,0 +1,502 @@
+/* Estilos Globais e Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: 
+        linear-gradient(rgba(26, 71, 42, 0.7), rgba(26, 71, 42, 0.7)),
+        url('natal.gif') center/cover no-repeat;
+	font-family: 'Lexend', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes backgroundShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* ============================================
+   FASE 1: AGRADECIMENTO
+   ============================================ */
+.thank-you-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a472a 0%, #c41e3a 50%, #1a472a 100%);
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 1s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Animação mais dramática */
+    padding: 20px;
+}
+
+.thank-you-section.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.company-logo {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    font-weight: bold;
+    color: #d4af37;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: pulse 1.5s ease-in-out infinite;
+    border: 3px solid #c41e3a;
+}
+
+.company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 15px 40px rgba(196, 30, 58, 0.4);
+    }
+}
+
+.thank-you-section h1 {
+    font-size: 4rem;
+    color: #d4af37;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    letter-spacing: 3px;
+    text-align: center;
+    animation: slideDown 1s ease-out, glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    to {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.8), 0 0 30px rgba(196, 30, 58, 0.6);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.thank-you-section p {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    animation: slideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both, bounce 2s ease-in-out infinite 1.3s; /* Curva de animação aprimorada */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   FASE 2: CHUVA RÁPIDA + NEVOAL
+   ============================================ */
+.rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.rain-container.active {
+    opacity: 1;
+}
+
+.rain-container.fading {
+    opacity: 0;
+}
+
+.fog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 45;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.fog-overlay.active {
+    opacity: 1;
+}
+
+.fog-overlay.fading {
+    opacity: 0;
+}
+
+.rain-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes horizontalRain {
+    0% {
+        transform: translateX(-300px) translateY(0) rotate(0deg); /* Começa MAIS fora */
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(calc(100vw + 300px)) translateY(0) rotate(30deg); /* Termina MAIS fora */
+        opacity: 0.4;
+    }
+}
+
+/* ============================================
+   FASE 3: KITS DE NATAL
+   ============================================ */
+.main-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Para empurrar o rodapé para baixo */
+    z-index: 1;
+    padding: 40px 20px 80px 20px; /* Espaço para o rodapé */
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.main-container.visible {
+    opacity: 1;
+}
+
+.kits-content {
+    width: 100%;
+    max-width: 1200px;
+    flex-grow: 1;
+}
+
+.kits-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: slideDown 1s ease-out, titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    to {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 15px rgba(196, 30, 58, 0.6);
+    }
+}
+
+.kits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas fixas */
+    gap: 20px; /* Reduzi um pouco o gap para caber melhor */
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.kit-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.6s ease-out;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.kit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c41e3a, #d4af37, #c41e3a);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: -200% 0;
+    }
+    50% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(0px) scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.kit-card:hover {
+    transform: translateY(-15px) scale(1.02) rotateZ(-1deg); /* Leve rotação para mais impacto */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(196, 30, 58, 0.4); /* Sombra mais intensa */
+    border-color: #c41e3a;
+}
+
+.kit-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #d4af37 0%, #c41e3a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.kit-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shine 8s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0%, 100% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(100%);
+    }
+}
+
+.kit-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.kit-card:hover .kit-image img {
+    transform: scale(1.1);
+}
+
+.kit-content {
+    padding: 25px;
+    position: relative;
+}
+
+.kit-title {
+    font-size: 1.8rem;
+    color: #1a472a;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.kit-description {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.kit-products {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.kit-products li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.kit-products li:last-child {
+    border-bottom: none;
+}
+
+.kit-products li::before {
+    content: '•';
+    color: #c41e3a;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.kit-button {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #25d366; /* Cor do WhatsApp */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease; /* Adicionado box-shadow na transição */
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+.kit-button:hover {
+    background-color: #128c7e;
+    transform: translateY(-3px); /* Efeito de "levantar" mais pronunciado */
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6); /* Sombra mais forte no hover */
+}
+
+.kit-button:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   NOVO: RODAPÉ
+   ============================================ */
+.footer {
+    width: 100%;
+    padding: 15px 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.footer a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .thank-you-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .thank-you-section p {
+        font-size: 1.2rem;
+    }
+
+    .kits-title {
+        font-size: 2rem;
+    }
+
+    .kit-card {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1200px) {
+    .kits-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .kits-grid {
+        grid-template-columns: 1fr; /* 1 coluna em mobile */
+    }
+}
+
+.logo-img {
+    height: 40px; /* Ajuste a altura conforme necessário */
+    width: auto;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+.rain-item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: -200px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    animation-name: horizontalRain; /* ADICIONE ESTA LINHA */
+    animation-fill-mode: forwards; /* ADICIONE ESTA LINHA */
+}
