@@ -8,7 +8,7 @@
 body {
     background: 
         linear-gradient(rgba(26, 71, 42, 0.7), rgba(26, 71, 42, 0.7)),
-        url('natal.gif') center/cover no-repeat;
+        url('natal.png') center/cover no-repeat;
 	font-family: 'Lexend', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
