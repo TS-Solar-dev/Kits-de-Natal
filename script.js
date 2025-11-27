@@ -72,8 +72,8 @@ const emojiImages = [
     'emoji2.png',
     'emoji3.png',
     'emoji4.png',
-    'emoji5.png', // Adicionado mais um para variedade
-    'emoji6.png'  // Adicionado mais um para variedade
+    'emoji5.png',
+    'emoji6.png'
 ];
 
 // ============================================
@@ -82,6 +82,10 @@ const emojiImages = [
 
 function createQuickRain() {
     const rainContainer = document.getElementById('rainContainer');
+    if (!rainContainer) {
+        console.error('Elemento rainContainer não encontrado!');
+        return;
+    }
     
     const totalEmojis = 200; 
 
@@ -93,21 +97,21 @@ function createQuickRain() {
         rainItem.innerHTML = `<img src="${randomImage}" alt="emoji">`;
         
         // Posição vertical mais espaçada
-        rainItem.style.top = Math.random() * 100 + '%'; // Aumentei para 150%
+        rainItem.style.top = Math.random() * 100 + '%';
         
-        // Duração MAIS variada (2s a 8s)
+        // Duração variada
         const duration = 5 + Math.random() * 10;
         rainItem.style.animationDuration = duration + 's';
         
-        // Atraso MUITO mais distribuído (0s a 10s)
+        // Atraso distribuído
         rainItem.style.animationDelay = Math.random() * 5 + 's'; 
         
-        // TAMANHOS mais variados (15px a 120px)
+        // Tamanhos variados
         const size = 15 + Math.random() * 105;
         rainItem.style.width = size + 'px';
         rainItem.style.height = size + 'px';
 
-        // ROTAÇÃO mais suave (0 a 30 graus)
+        // Rotação suave
         const initialRotation = Math.random() * 30;
         rainItem.style.transform = `rotate(${initialRotation}deg)`;
 
@@ -117,10 +121,11 @@ function createQuickRain() {
 
 function renderKits() {
     const kitsGrid = document.getElementById('kitsGrid');
+    if (!kitsGrid) {
+        console.error('Elemento kitsGrid não encontrado!');
+        return;
+    }
     
-    // Seleciona o primeiro vendedor como padrão. O usuário pode mudar a lógica aqui.
-    const vendedorSelecionado = vendedores[0]; 
-
     kits.forEach((kit, index) => {
         const card = document.createElement('div');
         card.className = 'kit-card';
@@ -159,20 +164,32 @@ function renderKits() {
 }
 
 // ============================================
-// SEQUÊNCIA DE EVENTOS
+// SEQUÊNCIA DE EVENTOS (CORRIGIDA)
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Carregado - Iniciando sequência...');
+    
+    // Renderizar kits primeiro
     renderKits();
 
-    const mainHeader = document.getElementById('mainHeader');
     const thankYouSection = document.getElementById('thankYouSection');
     const rainContainer = document.getElementById('rainContainer');
     const fogOverlay = document.getElementById('fogOverlay');
     const mainContainer = document.getElementById('mainContainer');
 
-    // FASE 1: Agradecimento por 3 segundos
+    // Verificar se todos os elementos existem
+    if (!thankYouSection || !rainContainer || !fogOverlay || !mainContainer) {
+        console.error('Um ou mais elementos não foram encontrados no DOM!');
+        return;
+    }
+
+    console.log('Iniciando sequência de transição...');
+
+    // FASE 1: Agradecimento por 4 segundos (aumentei o tempo)
     setTimeout(() => {
+        console.log('Fase 1: Escondendo agradecimento...');
+        
         // Esconder agradecimento
         thankYouSection.classList.add('hidden');
         
@@ -180,18 +197,27 @@ document.addEventListener('DOMContentLoaded', () => {
         rainContainer.classList.add('active');
         createQuickRain();
 
-        // Após 3 segundos de chuva, iniciar nevoal e esconder chuva
+        console.log('Fase 2: Chuva iniciada...');
+
+        // Após 4 segundos de chuva, iniciar nevoal e esconder chuva
         setTimeout(() => {
+            console.log('Fase 3: Iniciando nevoal...');
+            
             fogOverlay.classList.add('active');
             rainContainer.classList.add('fading');
             
-            // Após 500ms, mostrar kits e cabeçalho, esconder nevoal
+            // Após 500ms, mostrar kits e esconder nevoal
             setTimeout(() => {
+                console.log('Fase 4: Mostrando kits...');
+                
                 mainContainer.classList.add('visible');
                 fogOverlay.classList.add('fading');
+                
+                console.log('Sequência completa!');
+                
             }, 500);
             
-        }, 4000); // 3 segundos de chuva
+        }, 4000); // 4 segundos de chuva
         
-    }, 4000);
+    }, 4000); // 4 segundos na tela inicial
 });
