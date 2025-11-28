@@ -91,7 +91,7 @@ function createQuickRain() {
         return;
     }
     
-    const totalEmojis = 200; 
+    const totalEmojis = 300; 
 
     for (let i = 0; i < totalEmojis; i++) {
         const rainItem = document.createElement('div');
@@ -108,7 +108,7 @@ function createQuickRain() {
         rainItem.style.animationDuration = duration + 's';
         
         // Atraso distribuído
-        rainItem.style.animationDelay = Math.random() * 5 + 's'; 
+        rainItem.style.animationDelay = Math.random() * 1 + 's'; 
         
         // Tamanhos variados
         const size = 15 + Math.random() * 105;
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
             }, 500);
             
-        }, 4000); // 4 segundos de chuva
+        }, 2000); // 4 segundos de chuva
         
-    }, 4000); // 4 segundos na tela inicial
+    }, 1500); // 4 segundos na tela inicial
 });
