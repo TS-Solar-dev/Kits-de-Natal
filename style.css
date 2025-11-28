@@ -500,3 +500,97 @@ body {
     animation-name: horizontalRain; /* ADICIONE ESTA LINHA */
     animation-fill-mode: forwards; /* ADICIONE ESTA LINHA */
 }
+/* ============================================
+   ESTILO PARA DESTAQUE DO BÔNUS (KIT 4)
+   ============================================ */
+.glowing-bonus {
+    font-size: 1.2em; /* Aumenta um pouco o tamanho dentro do título */
+    font-weight: 900; /* Deixa bem negrito */
+    color: #d4af37; /* Cor dourada/amarela */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 0, 0.5), /* Brilho suave */
+        0 0 10px rgba(255, 215, 0, 0.8), /* Brilho médio */
+        0 0 20px rgba(255, 165, 0, 0.9); /* Brilho forte */
+    animation: pulseGlow 1.5s infinite alternate;
+    display: inline-block;
+}
+
+@keyframes pulseGlow {
+    0% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 0, 0.5),
+            0 0 10px rgba(255, 215, 0, 0.8),
+            0 0 20px rgba(255, 165, 0, 0.9);
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 
+            0 0 8px rgba(255, 255, 0, 0.8),
+            0 0 15px rgba(255, 215, 0, 1),
+            0 0 30px rgba(255, 165, 0, 1),
+            0 0 40px rgba(255, 69, 0, 0.5); /* Adiciona um brilho mais avermelhado/laranja no pico */
+        transform: scale(1.05);
+    }
+}
+
+/* ============================================
+   ESTILOS PARA O BADGE DE BÔNUS
+   ============================================ */
+.kit-bonus-badge {
+    position: absolute;
+    top: 220px; /* Ajusta a posição para ficar logo abaixo da imagem (250px de altura) */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: #c41e3a; /* Vermelho Natal */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 3px solid #d4af37; /* Borda Dourada */
+    text-align: center;
+    white-space: nowrap;
+    transition: transform 0.3s ease;
+}
+
+.kit-card:hover .kit-bonus-badge {
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.bonus-value {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #d4af37; /* Dourado */
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/* Efeito Brilhante para o Kit 4 */
+.glowing-bonus-value {
+    color: #fff; /* Branco para o brilho */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 0, 0.8), /* Amarelo */
+        0 0 10px rgba(255, 165, 0, 1), /* Laranja */
+        0 0 20px rgba(255, 69, 0, 1); /* Vermelho/Laranja */
+    animation: pulseGlowBonus 1.5s infinite alternate;
+}
+
+@keyframes pulseGlowBonus {
+    0% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 0, 0.8),
+            0 0 10px rgba(255, 165, 0, 1),
+            0 0 20px rgba(255, 69, 0, 1);
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 
+            0 0 8px rgba(255, 255, 0, 1),
+            0 0 15px rgba(255, 165, 0, 1),
+            0 0 30px rgba(255, 69, 0, 1),
+            0 0 40px rgba(255, 0, 0, 0.5); /* Brilho mais intenso e avermelhado */
+        transform: scale(1.05);
+    }
+}
