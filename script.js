@@ -39,29 +39,33 @@ const kits = [
     {
         id: 1,
         title: 'Kit Natal Básico',
-        description: 'O presente perfeito para aquecer o Natal em família!',
-        products: ['Coletor Solar Premium', 'Controlador Natalino V1', 'Válvula de Retenção Especial'],
+        description: 'Presenteie seu estoque! O início perfeito para as vendas de Natal.',
+        products: ['30un - Coletor de 3.00M', '3un - Kits Fechamento', '2un - Válvulas', '1un - Controlador'],
+        bonus: 'R$200',
         image: 'kit1.png'
     },
     {
         id: 2,
         title: 'Kit Natal Premium', 
-        description: 'Celebre o Natal com o conforto do aquecimento solar!',
-        products: ['Coletor Solar Plus', 'Controlador Premium V2', 'Válvula Quebra-Vácuo Dourada'],
+        description: 'Seu Natal mais lucrativo! Produtos estratégicos para presentear seu faturamento.',
+        products: ['40un - Coletor de 3.00M', '2un - Kits Fechamento', '2un - Válvulas Quebra-vácuo', '2un - Válvulas de Retenção'],
+        bonus: 'R$300',
         image: 'kit2.png'
     },
     {
         id: 3,
         title: 'Kit Natal Deluxe',
-        description: 'O presente que aquece corações e piscinas!',
-        products: ['Coletor Solar Deluxe', 'Controlador Estrela V3', 'Kit Válvulas Premium'],
+        description: 'O presente do Papai Noel para seu negócio! Volume ideal para a alta demanda natalina.',
+        products: ['110un - Coletor de 3.00M', '10un - Kits Fechamento'],
+        bonus: 'R$500',
         image: 'kit3.png'
     },
     {
         id: 4,
         title: 'Kit Natal Ultra',
-        description: 'O máximo em conforto para um Natal inesquecível!',
-        products: ['Coletor Solar Ultra', 'Controlador Master V4', 'Sistema Completo Premium'],
+        description: 'A estrela do seu Natal! O maior bônus para iluminar suas vendas.',
+        products: ['120un - Coletor de 3.00M', '10un - Kits Fechamento', '7un - Válvulas Quebra-vácuo', '7un - Válvulas de Retenção'],
+        bonus: 'R$1.000',
         image: 'kit4.png'
     }
 ];
@@ -143,17 +147,23 @@ function renderKits() {
         
         // Mensagem personalizada para o WhatsApp
         const whatsappMessage = encodeURIComponent(
-            `Olá! Gostaria de mais informações sobre o kit "${kit.title}" (ID: ${kit.id}). Por favor, me ajude com a compra!`
+	            `Olá! Gostaria de mais informações sobre o kit "${kit.title}" (ID: ${kit.id}) com BÔNUS DE FRETE de ${kit.bonus}. Por favor, me ajude com a compra!`
         );
         
         // Link do WhatsApp com o parâmetro 'ref' para rastreamento do vendedor
         const whatsappLink = `https://wa.me/${vendedorSelecionado.whatsapp}?text=${whatsappMessage}`;
         
-        card.innerHTML = `
-            <div class="kit-image">
-                <img src="${kit.image}" alt="${kit.title}">
-            </div>
-            <div class="kit-content">
+	        // Determina a classe de destaque para o Kit 4
+	        const bonusClass = kit.id === 4 ? 'glowing-bonus-value' : '';
+	        
+	        card.innerHTML = `
+	            <div class="kit-image">
+	                <img src="${kit.image}" alt="${kit.title}">
+	            </div>
+	            <div class="kit-bonus-badge">
+	                BÔNUS NO FRETE: <span class="bonus-value ${bonusClass}">${kit.bonus}</span>
+	            </div>
+	            <div class="kit-content">
                 <h3 class="kit-title">${kit.title}</h3>
                 <p class="kit-description">${kit.description || ''}</p>
                 <ul class="kit-products">
