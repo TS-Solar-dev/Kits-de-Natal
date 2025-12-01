@@ -54,7 +54,7 @@ const kits = [
     },
     {
         id: 3,
-        title: 'Kit Natal Deluxe',
+        title: 'Kit Natal Pro',
         description: 'O presente do Papai Noel para seu negócio! Volume ideal para a alta demanda natalina.',
         products: ['110un - Coletor de 3.00M', '10un - Kits Fechamento'],
         bonus: 'R$500',
