@@ -150,7 +150,7 @@ function renderKits() {
         
         // Nova mensagem personalizada para o WhatsApp
         const whatsappMessage = encodeURIComponent(
-            `Olá! Fiquei interessado no kit "${kit.title}" com BÔNUS DE FRETE de ${kit.bonus}, poderia me mostrar um orçamento?\n\n` +
+            `Olá! Fiquei interessado no kit "${kit.title}" com BÔNUS DE FRETE de ${kit.bonus}, poderia me montar um orçamento?\n\n` +
             `{productsForWhatsApp}\n\n` +
             `Obrigado!`
         );
