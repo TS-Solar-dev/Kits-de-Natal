@@ -145,13 +145,13 @@ function renderKits() {
             `<li>${product}</li>`
         ).join('');
         
-        // Formatando os produtos para a mensagem do WhatsApp
-        const productsForWhatsApp = kit.products.map(product => `-${product}`).join('\n');
+        // Formatando os produtos para a mensagem do WhatsApp SEM o hífen
+        const productsForWhatsApp = kit.products.map(product => `${product}`).join('\n');
         
         // Nova mensagem personalizada para o WhatsApp
         const whatsappMessage = encodeURIComponent(
             `Olá! Fiquei interessado no kit "${kit.title}" com BÔNUS DE FRETE de ${kit.bonus}, poderia me montar um orçamento?\n\n` +
-            `{productsForWhatsApp}\n\n` +
+            `Produtos do Kit:\n${productsForWhatsApp}\n\n` +
             `Obrigado!`
         );
         
