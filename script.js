@@ -145,25 +145,30 @@ function renderKits() {
             `<li>${product}</li>`
         ).join('');
         
-        // Mensagem personalizada para o WhatsApp
+        // Formatando os produtos para a mensagem do WhatsApp
+        const productsForWhatsApp = kit.products.map(product => `-${product}`).join('\n');
+        
+        // Nova mensagem personalizada para o WhatsApp
         const whatsappMessage = encodeURIComponent(
-	            `Olá! Gostaria de mais informações sobre o kit "${kit.title}" (ID: ${kit.id}) com BÔNUS DE FRETE de ${kit.bonus}. Por favor, me ajude com a compra!`
+            `Olá! Fiquei interessado no kit "${kit.title}" com BÔNUS DE FRETE de ${kit.bonus}, poderia me mostrar um orçamento?\n\n` +
+            `{productsForWhatsApp}\n\n` +
+            `Obrigado!`
         );
         
         // Link do WhatsApp com o parâmetro 'ref' para rastreamento do vendedor
         const whatsappLink = `https://wa.me/${vendedorSelecionado.whatsapp}?text=${whatsappMessage}`;
         
-	        // Determina a classe de destaque para o Kit 4
-	        const bonusClass = kit.id === 4 ? 'glowing-bonus-value' : '';
-	        
-	        card.innerHTML = `
-	            <div class="kit-image">
-	                <img src="${kit.image}" alt="${kit.title}">
-	            </div>
-	            <div class="kit-bonus-badge">
-	                BÔNUS NO FRETE: <span class="bonus-value ${bonusClass}">${kit.bonus}</span>
-	            </div>
-	            <div class="kit-content">
+        // Determina a classe de destaque para o Kit 4
+        const bonusClass = kit.id === 4 ? 'glowing-bonus-value' : '';
+        
+        card.innerHTML = `
+            <div class="kit-image">
+                <img src="${kit.image}" alt="${kit.title}">
+            </div>
+            <div class="kit-bonus-badge">
+                BÔNUS NO FRETE: <span class="bonus-value ${bonusClass}">${kit.bonus}</span>
+            </div>
+            <div class="kit-content">
                 <h3 class="kit-title">${kit.title}</h3>
                 <p class="kit-description">${kit.description || ''}</p>
                 <ul class="kit-products">
@@ -178,7 +183,6 @@ function renderKits() {
         kitsGrid.appendChild(card);
     });
 }
-
 // ============================================
 // SEQUÊNCIA DE EVENTOS (CORRIGIDA)
 // ============================================
